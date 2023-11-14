@@ -4,6 +4,7 @@ from algorithms import base64_utils, base16_utils, base32_utils, url_utils, sha2
 from cryptography.hazmat.primitives import serialization, hashes
 from cryptography.hazmat.primitives.asymmetric import padding, rsa
 from cryptography.hazmat.backends import default_backend
+import shlex
 
 def execute(args):
     if args.algorithm == "base64":
@@ -173,7 +174,7 @@ def main():
             break
 
         try:
-            args = parser.parse_args(user_input.split())
+            args = parser.parse_args(shlex.split(user_input))
             execute(args)
         except Exception as e:
             print(f"Error: {e}")
